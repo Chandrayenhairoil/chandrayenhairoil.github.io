@@ -1,4 +1,6 @@
 <?php
+if(isset($_POST['submit'])){
+ 
   $name = $_POST['name']
   $visitor_email = $_POST['email']
   $phonenumber = $_POST['phonenumber']
@@ -20,5 +22,5 @@
   mail($to,$email_subject,$email_body,$headers);
 
   header("Location: form.html");
-  
+}
 ?>
