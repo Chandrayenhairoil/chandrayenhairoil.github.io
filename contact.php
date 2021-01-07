@@ -1,24 +1,22 @@
 <?php
-  $name = $_POST['name']
-  $visitor_email = $_POST['email']
-  $phonenumber = $_POST['phonenumber']
-  $residentialaddress = $_POST['residentialaddress']
+ if(isset($_POST['submit'])){
+  $name=$_POST['name'];
+  $email=$_POST['email'];
+  $phonenumber=$_POST['phonenumber'];
+  $residentialaddress=$_POST['residentialaddress'];
   
-  $email_from = 'chandrayenhairoil.github.io';
-  $email_subject = 'New Form Submission';
-  $email_body = "User Name: $name.\n"
-                    "User Email: $visitor_email.\n".
-                    "User Phonenumber: $phonenumber.\n".
-                    "User Residentaladdress: $residentaladdress\n";
+  $to ='vrkrock7@gmail.com'
+  $subject='New Form Submission';
+  $message="Name: ".$name"\n"."Phone: ".$phone."\n". "Residentialaddress: "."\n\n".$residentialaddress;
+  $headers="From: ".$email;
 
-  $to ="vrkrock7@gmail.com"                   
-  
-  $headers ="From: $email_from \r\n"
+  if(mail($to, $subject, $message, $headers)){
+     echo"<h1>Submitted successfully! Thank you"." ".$name.",We will cotact you later</h1>";
+  }
+  else{
+    echo "oops! Something went wrong!";
+  }
 
-  $headers ="Reply-To: $visitor_from \r\n"
-
-  mail($to,$email_subject,$email_body,$headers);
-
-  header("Location: form.html");
+}
   
 ?>
