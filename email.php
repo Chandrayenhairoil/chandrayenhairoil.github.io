@@ -1,22 +1,22 @@
-<?php
- if(isset($_POST['submit'])){
-  $name=$_POST['name'];
-  $email=$_POST['email'];
-  $phonenumber=$_POST['phonenumber'];
-  $residentialaddress=$_POST['residentialaddress'];
-  
-  $to='vrkrock7@gmail.com'
-  $subject='New Form Submission';
-  $message="Name: ".$name"\n"."Phone: ".$phone."\n". "Residentialaddress: "."\n\n".$residentialaddress;
-  $headers="From: ".$email;
+<?php 
+if(isset($_POST['submit'])){
+    $to = "vrkrock7@gmail.com";
+    $from = $_POST['email']; // this is the sender's Email address
+    $name = $_POST['name'];
+    $phonenumber = $_POST['phonenumber'];
+    $residentialaddress = $_POST['residentialaddress'];
+ 
+    $subject = "Form submission";
+    $subject2 = "Copy of your form submission";
+    $message = $name . " " . $phonenumber . " " . $residentialaddress . " " . " wrote the following:" . "\n\n" . $_POST['message'];
+    $message2 = "Here is a copy of your message " . $name . "\n\n" . $_POST['message'];
 
-  if(mail($to, $subject, $message, $headers)){
-     echo "<h1>Submitted successfully! Thank you"." ".$name.",We will cotact you later</h1>";
-  }
-  else{
-    echo "oops! Something went wrong!";
-  }
-
-}
-  
+    $headers = "From:" . $from;
+    $headers2 = "From:" . $to;
+    mail($to,$subject,$message,$headers);
+    mail($from,$subject2,$message2,$headers2); // sends a copy of the message to the sender
+    echo "Mail Sent. Thank you " . $first_name . ", we will contact you shortly.";
+    
+    }
 ?>
+
